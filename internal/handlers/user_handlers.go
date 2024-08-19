@@ -13,6 +13,19 @@ import (
 
 func SignUpHandler(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		// Add CORS headers
+		w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		w.Header().Set("Access-Control-Allow-Credentials", "true")
+
+		// Handle preflight requests
+		if r.Method == http.MethodOptions {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+
+		log.Println("Received request on /signup")
 		var req models.User
 		if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 			http.Error(w, "Invalid request payload", http.StatusBadRequest)
@@ -39,6 +52,21 @@ func SignUpHandler(db *sql.DB) http.HandlerFunc {
 
 func LoginHandler(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		// Add CORS headers
+		w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		w.Header().Set("Access-Control-Allow-Credentials", "true")
+
+		// Handle preflight requests
+		if r.Method == http.MethodOptions {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+
+		// Log the request to confirm it's reaching the handler
+		log.Println("Received request on /login")
+
 		var req models.User
 		if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 			http.Error(w, "Invalid request payload", http.StatusBadRequest)
@@ -70,9 +98,12 @@ func LoginHandler(db *sql.DB) http.HandlerFunc {
 		}
 
 		http.SetCookie(w, &http.Cookie{
-			Name:    "token",
-			Value:   tokenString,
-			Expires: time.Now().Add(24 * time.Hour),
+			Name:     "token",
+			Value:    tokenString,
+			Expires:  time.Now().Add(24 * time.Hour),
+			HttpOnly: true,
+			Path:     "/",
+			SameSite: http.SameSiteLaxMode,
 		})
 
 		fmt.Fprintf(w, "Login successful")

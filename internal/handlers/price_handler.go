@@ -8,6 +8,20 @@ import (
 )
 
 func GetBitcoinPriceHandler(w http.ResponseWriter, r *http.Request) {
+	// Add CORS headers
+	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+	w.Header().Set("Access-Control-Allow-Methods", "GET, OPTIONS")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+	w.Header().Set("Access-Control-Allow-Credentials", "true")
+
+	// Handle preflight requests
+	if r.Method == http.MethodOptions {
+		w.WriteHeader(http.StatusOK)
+		return
+	}
+
+	log.Println("Received request on /price")
+
 	price, err := coingecko.FetchBitcoinPrice()
 	if err != nil {
 		log.Println("Error fetching Bitcoin price:", err)

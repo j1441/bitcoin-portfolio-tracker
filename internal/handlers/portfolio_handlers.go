@@ -12,6 +12,20 @@ import (
 
 func CreatePortfolioHandler(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		// Add CORS headers
+		w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		w.Header().Set("Access-Control-Allow-Credentials", "true")
+
+		// Handle preflight requests
+		if r.Method == http.MethodOptions {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+
+		log.Println("Received request on /portfolio")
+
 		var req models.Portfolio
 
 		// Parse the JWT token and extract the user ID
@@ -53,6 +67,20 @@ func CreatePortfolioHandler(db *sql.DB) http.HandlerFunc {
 
 func ListPortfoliosHandler(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		// Add CORS headers
+		w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		w.Header().Set("Access-Control-Allow-Credentials", "true")
+
+		// Handle preflight requests
+		if r.Method == http.MethodOptions {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+
+		log.Println("Received request on /portfolios")
+
 		var portfolios []models.Portfolio
 
 		// Parse the JWT token
@@ -100,6 +128,11 @@ func ListPortfoliosHandler(db *sql.DB) http.HandlerFunc {
 			return
 		}
 
+		// If no portfolios exist, return an empty list instead of nil
+		if portfolios == nil {
+			portfolios = []models.Portfolio{}
+		}
+
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(portfolios)
 	}
@@ -107,6 +140,20 @@ func ListPortfoliosHandler(db *sql.DB) http.HandlerFunc {
 
 func DeletePortfolioHandler(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		// Add CORS headers
+		w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		w.Header().Set("Access-Control-Allow-Credentials", "true")
+
+		// Handle preflight requests
+		if r.Method == http.MethodOptions {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+
+		log.Println("Received request on /portfolio/delete")
+
 		var req struct {
 			ID int `json:"id"`
 		}
