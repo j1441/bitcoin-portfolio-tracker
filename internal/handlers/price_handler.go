@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"bitcoin_portfolio_tracker/internal/coingecko"
+	"bitcoin-portfolio-tracker/internal/coingecko"
 	"encoding/json"
 	"log"
 	"net/http"
