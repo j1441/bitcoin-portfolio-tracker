@@ -1,11 +1,15 @@
 package main
 
 import (
-	"bitcoin_portfolio_tracker/internal/database"
-	"bitcoin_portfolio_tracker/internal/handlers"
+	"bitcoin-portfolio-tracker/internal/database"
+	"bitcoin-portfolio-tracker/internal/handlers"
 	"log"
 	"net/http"
+
 	//"github.com/rs/cors"
+	//test
+
+	"os"
 )
 
 func main() {
@@ -23,8 +27,12 @@ func main() {
 
 	http.HandleFunc("/price", handlers.GetBitcoinPriceHandler)
 
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
 	//handler := cors.Default().Handler(mux)
 
-	log.Println("Server starting on port 8080...")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Println("Server starting on port " + port)
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }

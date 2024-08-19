@@ -1,9 +1,9 @@
 package handlers
 
 import (
-	"bitcoin_portfolio_tracker/internal/auth"
-	"bitcoin_portfolio_tracker/internal/coingecko"
-	"bitcoin_portfolio_tracker/internal/models"
+	"bitcoin-portfolio-tracker/internal/auth"
+	"bitcoin-portfolio-tracker/internal/coingecko"
+	"bitcoin-portfolio-tracker/internal/models"
 	"database/sql"
 	"encoding/json"
 	"log"
