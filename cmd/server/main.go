@@ -13,6 +13,8 @@ import (
 )
 
 func main() {
+	log.Println("Starting app111")
+
 	// Initialize the database connection
 	db := database.ConnectDB()
 	defer db.Close()
