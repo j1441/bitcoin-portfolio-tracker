@@ -17,6 +17,8 @@ func main() {
 	db := database.ConnectDB()
 	defer db.Close()
 
+	log.Println("Connected to db")
+
 	//mux := http.NewServeMux()
 
 	http.HandleFunc("/signup", handlers.SignUpHandler(db))
