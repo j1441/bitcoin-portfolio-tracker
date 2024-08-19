@@ -1,4 +1,4 @@
-module bitcoin_portfolio_tracker
+module bitcoin-portfolio-tracker
 
 go 1.23.0
 
