@@ -53,7 +53,7 @@ func SignUpHandler(db *sql.DB) http.HandlerFunc {
 func LoginHandler(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// Add CORS headers
-		w.Header().Set("Access-Control-Allow-Origin", "*") // or specify your frontend origin
+		w.Header().Set("Access-Control-Allow-Origin", "*") // or specify your frontend origin.
 		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
 		w.Header().Set("Access-Control-Allow-Credentials", "true") // If using cookies or authentication headers
