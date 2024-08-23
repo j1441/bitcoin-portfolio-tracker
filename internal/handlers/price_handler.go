@@ -8,6 +8,7 @@ import (
 )
 
 func GetBitcoinPriceHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("Error in GetBitcoinPriceHandler")
 	// Add CORS headers
 	w.Header().Set("Access-Control-Allow-Origin", "*") // or specify your frontend origin
 	w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
