@@ -1,1 +1,1 @@
-web: go build -o app ./cmd/server && ./app
+web: docker-compose up

@@ -1,1 +1,16 @@
 PSQL_setup.sql
+
+# Ignore build artifacts
+.docker_build/
+bin/
+app
+
+# Ignore environment files
+.env
+
+# Ignore IDE files
+.idea/
+.vscode/
+
+# Ignore OS-specific files
+.DS_Store
