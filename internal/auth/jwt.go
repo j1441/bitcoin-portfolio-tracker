@@ -5,7 +5,7 @@ import (
 
 	"errors"
 
-	"github.com/dgrijalva/jwt-go"
+	"github.com/golang-jwt/jwt/v5"
 )
 
 var jwtKey = []byte("my_secret_key")
@@ -13,7 +13,7 @@ var jwtKey = []byte("my_secret_key")
 type Claims struct {
 	UserID int    `json:"user_id"`
 	Email  string `json:"email"`
-	jwt.StandardClaims
+	jwt.RegisteredClaims
 }
 
 // GenerateJWT creates a new JWT for a given user ID and email
@@ -22,8 +22,8 @@ func GenerateJWT(userID int, email string) (string, error) {
 	claims := &Claims{
 		UserID: userID,
 		Email:  email,
-		StandardClaims: jwt.StandardClaims{
-			ExpiresAt: expirationTime.Unix(),
+		RegisteredClaims: jwt.RegisteredClaims{
+			ExpiresAt: jwt.NewNumericDate(expirationTime),
 		},
 	}
 
