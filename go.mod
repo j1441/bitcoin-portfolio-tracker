@@ -1,9 +1,10 @@
 module bitcoin-portfolio-tracker
 
-go 1.20.14
+// +heroku goVersion go1.20
+go 1.20
 
 require (
-	github.com/golang-jwt/jwt/v5 v5.0.0
+	github.com/golang-jwt/jwt/v5 v5.2.1
 	github.com/lib/pq v1.10.9
 	golang.org/x/crypto v0.26.0
 )
