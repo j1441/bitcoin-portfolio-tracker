@@ -8,7 +8,7 @@ COPY . .
 RUN go mod download
 
 # Build the application
-RUN go build -o app ./cmd/server
+RUN go build -o app ./main.go
 
 # Stage 2: Prepare the runtime image
 FROM heroku/heroku:20
@@ -17,7 +17,8 @@ WORKDIR /app
 COPY --from=build /app/app /app/app
 
 # Set environment variables
-ENV PORT 8080
+ENV PORT $PORT
+EXPOSE $PORT
 
 # Run the application
 CMD ["./app"]
