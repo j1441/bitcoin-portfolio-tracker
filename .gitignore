@@ -16,3 +16,5 @@ app
 .DS_Store
 
 go_files_writeout.rtf
+table_init.pgsql
+

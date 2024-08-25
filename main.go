@@ -5,10 +5,6 @@ import (
 	"bitcoin-portfolio-tracker/internal/handlers"
 	"log"
 	"net/http"
-
-	//"github.com/rs/cors"
-	//test
-
 	"os"
 )
 
@@ -20,8 +16,6 @@ func main() {
 	defer db.Close()
 
 	log.Println("Connected to db")
-
-	//mux := http.NewServeMux()
 
 	http.HandleFunc("/signup", handlers.SignUpHandler(db))
 	http.HandleFunc("/login", handlers.LoginHandler(db))
@@ -35,7 +29,6 @@ func main() {
 	if port == "" {
 		port = "13178"
 	}
-	//handler := cors.Default().Handler(mux)
 
 	log.Println("Server starting on port " + port)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
