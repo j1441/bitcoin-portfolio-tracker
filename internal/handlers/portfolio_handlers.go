@@ -13,10 +13,7 @@ import (
 func CreatePortfolioHandler(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// Add CORS headers
-		w.Header().Set("Access-Control-Allow-Origin", "*") // or specify your frontend origin
-		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
-		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
-		w.Header().Set("Access-Control-Allow-Credentials", "true") // If using cookies or authentication headers
+		addCORSHeaders(w, r)
 
 		// Handle preflight requests
 		if r.Method == http.MethodOptions {
@@ -68,10 +65,7 @@ func CreatePortfolioHandler(db *sql.DB) http.HandlerFunc {
 func ListPortfoliosHandler(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// Add CORS headers
-		w.Header().Set("Access-Control-Allow-Origin", "*") // or specify your frontend origin
-		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
-		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
-		w.Header().Set("Access-Control-Allow-Credentials", "true") // If using cookies or authentication headers
+		addCORSHeaders(w, r)
 
 		// Handle preflight requests
 		if r.Method == http.MethodOptions {
@@ -141,10 +135,7 @@ func ListPortfoliosHandler(db *sql.DB) http.HandlerFunc {
 func DeletePortfolioHandler(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// Add CORS headers
-		w.Header().Set("Access-Control-Allow-Origin", "*") // or specify your frontend origin
-		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
-		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
-		w.Header().Set("Access-Control-Allow-Credentials", "true") // If using cookies or authentication headers
+		addCORSHeaders(w, r)
 
 		// Handle preflight requests
 		if r.Method == http.MethodOptions {

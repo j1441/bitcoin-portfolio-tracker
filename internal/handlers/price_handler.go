@@ -9,11 +9,9 @@ import (
 
 func GetBitcoinPriceHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Error in GetBitcoinPriceHandler")
+
 	// Add CORS headers
-	w.Header().Set("Access-Control-Allow-Origin", "*") // or specify your frontend origin
-	w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
-	w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
-	w.Header().Set("Access-Control-Allow-Credentials", "true") // If using cookies or authentication headers
+	addCORSHeaders(w, r)
 
 	// Handle preflight requests
 	if r.Method == http.MethodOptions {
