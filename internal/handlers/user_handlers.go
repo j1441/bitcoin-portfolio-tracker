@@ -12,8 +12,7 @@ import (
 )
 
 var allowedOrigins = []string{
-	"http://web.numerisgroup.xyz",       // Replace with your actual web frontend URL
-	"http://another-allowed-origin.com", // If you have other allowed origins, add them here
+	"http://web.numerisgroup.xyz", // Replace with your actual web frontend URL
 }
 
 // Helper function to check if the origin is allowed
