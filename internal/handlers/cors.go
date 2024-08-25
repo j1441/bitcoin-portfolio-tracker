@@ -7,8 +7,7 @@ import (
 
 func isAllowedOrigin(origin string) bool {
 	allowedOrigins := []string{
-		"http://web.numerisgroup.xyz",       // Replace with your actual web frontend URL
-		"http://another-allowed-origin.com", // Add other allowed origins if necessary
+		"http://web.numerisgroup.xyz",
 	}
 	for _, o := range allowedOrigins {
 		if o == origin {
