@@ -14,3 +14,5 @@ app
 
 # Ignore OS-specific files
 .DS_Store
+
+go_files_writeout.rtf
