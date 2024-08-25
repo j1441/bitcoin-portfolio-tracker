@@ -7,8 +7,8 @@ COPY . .
 # Download dependencies
 RUN go mod download
 
-# Build the application
-RUN go build -o app ./main.go
+# Build the application with static linking
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app ./main.go
 
 # Stage 2: Prepare the runtime image
 FROM heroku/heroku:20
