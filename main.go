@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	log.Println("Starting app111")
+	log.Println("Starting app")
 
 	// Initialize the database connection
 	db := database.ConnectDB()
@@ -27,7 +27,7 @@ func main() {
 
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "13178"
+		port = "8080"
 	}
 
 	log.Println("Server starting on port " + port)
