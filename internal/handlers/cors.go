@@ -8,6 +8,7 @@ import (
 func isAllowedOrigin(origin string) bool {
 	allowedOrigins := []string{
 		"http://web.numerisgroup.xyz",
+		"http://www.numerisgroup.xyz",
 	}
 	for _, o := range allowedOrigins {
 		if o == origin {
