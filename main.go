@@ -25,6 +25,9 @@ func main() {
 
 	http.HandleFunc("/price", handlers.GetBitcoinPriceHandler)
 
+	// New route for M2 change data
+	http.HandleFunc("/api/m2-change", handlers.GetM2ChangeHandler(db))
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"
